@@ -1,0 +1,70 @@
+{
+  "header": [
+    {
+      "prop": "name",
+      "width": 120
+    },
+    {
+      "prop": "age",
+      "width": 120
+    },
+    {
+      "prop": "sex",
+      "width": 120
+    },
+    {
+      "prop": "address",
+      "width": 120
+    },
+    {
+      "prop": "work",
+      "width": 120
+    }
+  ],
+  "data": [
+    {
+      "name": "第一行",
+      "sex": "男",
+      "age": "3岁",
+      "address": "北京",
+      "work": "IT"
+    },
+    {
+      "name": "第二行",
+      "sex": "女",
+      "age": "13岁",
+      "address": "北京",
+      "work": "IT"
+    },
+    {
+      "name": "第三行",
+      "sex": "男",
+      "age": "33岁",
+      "address": "上海",
+      "work": "清洁工"
+    },
+    {
+      "name": "第四行",
+      "sex": "女",
+      "age": "23岁",
+      "address": "上海",
+      "work": "清洁工"
+    },
+    {
+      "name": "第五行",
+      "sex": "男",
+      "age": "33岁",
+      "address": "上海",
+      "work": "清洁工"
+    },
+    {
+      "name": "第六行",
+      "sex": "男",
+      "age": "33岁",
+      "address": "上海",
+      "work": "清洁工"
+    }
+    
+
+  ]
+}

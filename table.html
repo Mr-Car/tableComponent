@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        table {
+            width: 100%;
+            text-align: center;
+            border-collapse: collapse;/*如果可能，边框会合并为一个单一的边框。*/
+            border-spacing: 0;/*属性设置相邻单元格的边框间的距离*/
+        }
+
+        table td {
+            word-break: break-all;/* word-break属性，可以让浏览器实现在任意位置的换行  break-all:允许在单词内换行 */
+            word-wrap: break-word;/*在长单词或 URL 地址内部进行换行*/
+        }
+
+        .container {
+            width: 1000px;
+            height: 500px;
+            padding: 0;
+            box-sizing: border-box;/*怪异盒*/
+        }
+
+        #left-div {
+            width: 100px;
+            float: left;
+        }
+
+        #left-div1 {
+            width: 100%;
+        }
+
+        #left-div2 {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+        }
+        /*滚动条占据了一定的位置，要把滚动条*/
+        #left-table2 {
+            margin-bottom: 4px;
+        }
+
+        #right-div {
+            float: left;
+            width: 340px;
+        }
+
+        #right-div1 {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        #right-div2 {
+            width: 100%;
+            height: 250px;
+            overflow: auto;/*这里设置auto是内容多了有滚动条，内容少了就不需要滚动条*/
+        }
+
+        #right-table1 {
+            width: 450px;
+        }
+
+        #right-table2 {
+            width: 450px;
+            overflow: auto;
+        }
+
+        th,
+        td {
+            height: 50px;
+            width: 120px;
+            line-height: 50px;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        th {
+            color: #1E304F;
+            background-color: #F3F8FF;
+        }
+
+        td {
+            color: #384967;
+        }
+
+        tr:nth-of-type(odd) {
+            background: #E7F2FF;
+        }
+
+        #right-div2::-webkit-scrollbar {
+            /*滚动条整体样式*/
+            width: 4px;
+            height: 4px;
+        }
+
+        #right-div2::-webkit-scrollbar-thumb {
+            /*滚动条里面小方块*/
+            border-radius: 5px;
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+            background: rgba(0, 0, 0, 0.2);
+        }
+
+        #right-div2::-webkit-scrollbar-track {
+            /*滚动条里面轨道*/
+            box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+            border-radius: 0;
+            background: rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="left-div">
+            <div id="left-div1">
+                <table>
+                    <tr>
+                        <th>编号</th>
+                    </tr>
+                </table>
+            </div>
+            <div id="left-div2">
+                <table id="left-table2"></table>
+            </div>
+        </div>
+        <div id="right-div">
+            <div id="right-div1">
+                <table id="right-table1">
+                    <tr>
+                        <th>名称1</th>
+                        <th>名称2</th>
+                        <th>名称3</th>
+                        <th>名称4</th>
+                        <th>名称5</th>
+                        <th>名称6</th>
+                        <th>名称7</th>
+                        <th>名称8</th>
+                    </tr>
+                </table>
+            </div>
+            <div id="right-div2">
+                <table id="right-table2"></table>
+            </div>
+        </div>
+    </div>
+
+</body>
+    <script>
+        //生成表格内容
+        let htmlLeft = '';
+        let htmlRight = '';
+        for (let i = 1; i <= 10; i++) {
+            htmlLeft += '<tr>';
+            htmlLeft += '<td>' + i + '</td>';
+            htmlLeft += '</tr>';
+        }
+        for (let i = 1; i <= 10; i++) {
+            htmlRight += '<tr>';
+            htmlRight += '<td>A</td>';
+            htmlRight += '<td>100</td>';
+            htmlRight += '<td>500</td>';
+            htmlRight += '<td>1</td>';
+            htmlRight += '<td>2</td>';
+            htmlRight += '<td>3</td>';
+            htmlRight += '<td>4</td>';
+            htmlRight += '<td>5</td>';
+            htmlRight += '</tr>';
+        }
+        $('#left-table2').html(htmlLeft);
+        $('#right-table2').html(htmlRight);
+        //滚动
+        // $('#right-div2').on('scroll', function () {
+        //     let top = $(this).scrollTop();// 获取当前滚动条上下滚动的距离
+        //     let left = $(this).scrollLeft();//获取当前滚动条左右滚动的距离
+        //     $('#left-div2').scrollTop(top);// 设置被选元素滚动条的垂直偏移
+        //     $('#right-div1').scrollLeft(left);//设置被选元素滚动条的水平偏移
+        // })
+        $("#right-div2").scroll(function(){
+            let top = $("#right-div2").scrollTop();
+            let left = $("#right-div2").scrollLeft();
+            $("#left-div2").scrollTop(top);
+            $("#right-div1").scrollLeft(left);
+        })
+        // 解决表头第一列与其他列高度不同步问题
+        let thHeight =  $("#right-div1 th").height();
+        $("#left-div1 th").height(thHeight);
+    </script>
+
+</html>

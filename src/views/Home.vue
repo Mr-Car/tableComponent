@@ -1,18 +1,31 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <about height="300" width="604" :model="data" :header="header" :hebing-info="hebing" :n="count"></about>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import about from './About'
+import data from './data.json'
 export default {
   name: 'home',
+  data() {
+    return {
+      count:1,
+      hebing:{
+        hang:'2',
+        aaa:['1','2','3']
+      },
+      header: [],
+      data: [],
+    }
+  },
+  mounted(){
+    this.data = data.data
+    this.header = data.header
+  },
   components: {
-    HelloWorld
+    about
   }
 }
 </script>
